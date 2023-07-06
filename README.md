@@ -5,12 +5,12 @@
 
 ### By: Platin Syla 
 
-####  | [GitHub](https://github.com/platinyy/game-one) |
+####  | [GitHub](https://github.com/platinyy/CapstoneProject) |
 
 ---
 
 ### **_Description_**
-MERN application that is made for the purpose of having clients order and buy food online for this particular food shop or coffee shop.
+MERN e-commerce is made using Express Node MongoDB and React.The main purpose of this application is to allow users/clients to buy food and drinks from a small family business called Dion's Coffe Shop.Clients can select items that they want to buy , make the order, pay for it, all through this application online, and than either pick up the order or have it deliver to them.
 
 ---
 ### **_Technologies Used_**
