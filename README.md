@@ -22,7 +22,7 @@ This e-commerce application is made using (MERN) Express Node MongoDB and React.
 
 ---
 
-### **_Dion's Coffe ERD Diagram_**
+### **_Dion's Coffee ERD Diagram_**
 
 ##### 
 ![alt text](Dion's coffee ERD.png)
