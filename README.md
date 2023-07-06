@@ -1,6 +1,6 @@
 # CapstoneProject 
 
-# E-commerce Food shop
+# E-commerce Coffee Shop
 ## Date: 07/06/2023
 
 ### By: Platin Syla 
