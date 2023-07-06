@@ -24,8 +24,4 @@ This e-commerce application is made using (MERN) Express Node MongoDB and React.
 
 ### **_Dion's Coffee ERD Diagram_**
 
-##### 
-![alt text](Dion's coffee ERD.png)
-##### Wireframing is used to draw the project [here](https://drive.google.com/file/d/1w0GvB9okQL_69BBgbapDW1CEEDzFscEQ/view?usp=sharing).
-
-##### The project itself was deployed and can be viewed [here](https://app.diagrams.net/#G1w0GvB9okQL_69BBgbapDW1CEEDzFscEQ).
+![alt-text](Images/Dion's coffee ERD.png)
