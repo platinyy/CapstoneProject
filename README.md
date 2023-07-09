@@ -25,10 +25,10 @@ This e-commerce application is made using (MERN) Express Node MongoDB and React.
 ---
 
 ### **_Dion's Coffee ERD Diagram_**
-![Image](Images/ERd.png)
+![Image](ImagesReadme/ERd.png)
 
 ### **_Component Hierarchy Diagram_**
-![Image](Images/Hiearchy.png)
+![Image](ImagesReadme/Hiearchy.png)
 
 ### **Trello Board**
 ####  | [Trello Board](https://trello.com/invite/b/buVIf6Gy/ATTIf9b51c77ff04c943e3eec18d9e945bb3610EFE12/capstone-project) |
