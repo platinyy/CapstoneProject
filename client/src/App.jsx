@@ -7,6 +7,8 @@ import Feed from './pages/Feed'
 import Home from './pages/Home'
 import './App.css'
 import { CheckSession } from './services/Auth'
+import NewOrderPage from './pages/NewOrderPage/NewOrderPage'
+import OrderHistoryPage from './pages/OrderHistoryPage/OrderHistoryPage'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -42,6 +44,8 @@ const App = () => {
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/feed" element={<Feed user={user}/>} />
+          <Route path="/orders/new" element={<NewOrderPage user={user}/>} />
+          <Route path="/orders" element={<OrderHistoryPage user={user}/>} />
         </Routes>
       </main>
     </div>
