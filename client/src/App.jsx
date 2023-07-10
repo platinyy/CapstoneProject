@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router'
 import Nav from './components/Nav'
 import Register from './pages/Register'
 import SignIn from './pages/SignIn'
-import Feed from './pages/Feed'
 import Home from './pages/Home'
 import './App.css'
 import { CheckSession } from './services/Auth'
@@ -43,7 +42,6 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/feed" element={<Feed user={user}/>} />
           <Route path="/orders/new" element={<NewOrderPage user={user}/>} />
           <Route path="/orders" element={<OrderHistoryPage user={user}/>} />
         </Routes>
