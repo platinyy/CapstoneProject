@@ -8,6 +8,8 @@ const AuthRouter = require('./routes/AuthRouter')
 const PORT = process.env.PORT || 3001
 
 const db = require('./db')
+const CategoryRouter = require('./routes/CategoryRouter')
+const ItemRouter = require('./routes/ItemRouter')
 
 const app = express()
 
@@ -17,7 +19,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/auth', AuthRouter)
-
+app.use('/categories', CategoryRouter)
+app.use('/items' , ItemRouter)
 
 app.use('/', (req, res) => {
   res.send(`Connected!`)

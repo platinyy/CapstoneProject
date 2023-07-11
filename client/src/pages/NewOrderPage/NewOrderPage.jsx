@@ -1,8 +1,48 @@
-const NewOrderPage = ({user}) =>{
+import { useEffect, useState} from 'react'
+import { GetCategories } from '../../services/CategoryServices'
+import { GetItems  } from '../../services/ItemServices'
+import { useNavigate } from 'react-router-dom'
 
+
+
+const NewOrderPage = ({user}) =>{
+    let navigate = useNavigate()
+    const [Categories, setCategories] = useState([])
+    const [Items, setItems] = useState([])
+
+    useEffect(() => {
+        const handleCategories = async () => {
+            const data = await GetCategories()
+            setCategories(data)
+        }
+        handleCategories()
+    },[])
+   
+    useEffect(() => {
+        const handleItems = async () => {
+            const data = await GetItems()
+            setItems(data)
+        }
+        handleItems()
+    },[])
     return user ? (
         <div>
-            <h1>NewOrderPage</h1>
+            
+            {Categories.map((category) => (
+                <div>
+                <h1>{category.name} </h1>
+                {Items.map((item)=>{
+                    if(category.name === item.category.name)
+                    {
+                        return (<div>
+                            {item.name}{item.emoji}{item.price}
+                        </div>)
+                    }
+                })}
+                </div>
+            ))}
+              
+       
         </div>
     ) :(
         <div className="protected">

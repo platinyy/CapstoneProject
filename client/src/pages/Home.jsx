@@ -1,3 +1,4 @@
+import { randEmoji } from '@ngneat/falso'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
@@ -6,10 +7,10 @@ const Home = () => {
   return (
     <div className="home-container col">
       
-      <h1>Welcome to Dion's Coffee Shop</h1>
+      <h1>Welcome to Dion's Coffee Shop ☕</h1>
       <section className="welcome-signin">
         <button onClick={() => navigate('/signin')}>
-          Click here to place your order!
+          Click here to place your order !
         </button>
       </section>
     </div>
@@ -17,3 +18,4 @@ const Home = () => {
 }
 
 export default Home
+
