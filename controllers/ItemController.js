@@ -1,12 +1,15 @@
-const  Item  = require('../models/Item')
+const Item = require('../models/Item')
 
 const GetItems = async (req, res) => {
   try {
     const categoryId = req.params.categoryId;
-    const items = await Item.find ({category: categoryId }).exec();
+
+    // Find all items for the specified category
+    const items = await Item.find({ category: categoryId }).exec();
+
     res.json(items);
   } catch (error) {
-    res.status(500).json({error: 'Failed to retrieve items for the category'});
+    res.status(500).json({ error: 'Failed to retrieve items for the category' });
   }
 }
 
@@ -21,7 +24,7 @@ const CreateItem = async (req, res) => {
 
 const UpdateItem = async (req, res) => {
   try {
-    const Item = await Item.findByIdAndUpdate(req.params.post_id, req.body, {new: true})
+    const Item = await Item.findByIdAndUpdate(req.params.post_id, req.body, { new: true })
     res.send(Item)
   } catch (error) {
     throw error

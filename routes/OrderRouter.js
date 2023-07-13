@@ -6,8 +6,7 @@ const middleware = require('../middleware')
 
 
 router.get('/cart', middleware.checkAuth, orderController.cart);
-router.get('/history', middleware.checkAuth, orderController.history);
-router.get('/history/:id', middleware.checkAuth, orderController.historyById);
+
 
 router.post('/cart/items/:id', middleware.checkAuth, orderController.addToCart);
 router.post('/cart/checkout', middleware.checkAuth, orderController.checkout);

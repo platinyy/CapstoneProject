@@ -1,8 +1,8 @@
-const  Category  = require('../models/Category')
+const Category = require('../models/Category')
 
 const GetCategories = async (req, res) => {
   try {
-    const Categories= await Category.find({})
+    const Categories = await Category.find({})
     res.send(Categories)
   } catch (error) {
     res.status(400).json({
@@ -24,7 +24,7 @@ const CreateCategory = async (req, res) => {
 
 const UpdateCategory = async (req, res) => {
   try {
-    const Category = await Category.findByIdAndUpdate(req.params.post_id, req.body, {new: true})
+    const Category = await Category.findByIdAndUpdate(req.params.post_id, req.body, { new: true })
     res.send(Category)
   } catch (error) {
     res.status(400).json({

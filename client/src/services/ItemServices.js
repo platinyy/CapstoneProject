@@ -7,4 +7,3 @@ export const GetItems = async (selectedCategory) => {
     throw error
   }
 }
-  

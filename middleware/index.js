@@ -1,34 +1,33 @@
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-require('dotenv').config()
-const { User } = require("../models/index")
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const { User } = require("../models/index");
 
-const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
-const APP_SECRET = process.env.APP_SECRET
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
+const APP_SECRET = process.env.APP_SECRET;
 
 const hashPassword = async (password) => {
   // Accepts a password from the request body
-  let hashedPassword = await bcrypt.hash(password, SALT_ROUNDS)
+  let hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
   // Creates a hashed password and encrypts it 12 times
-  return hashedPassword
-}
+  return hashedPassword;
+};
 
 const comparePassword = async (storedPassword, password) => {
   // Accepts the password provided in the login request and the currently stored password
   // Compares the two passwords for a match
-  let passwordMatch = await bcrypt.compare(password, storedPassword)
+  let passwordMatch = await bcrypt.compare(password, storedPassword);
   // Returns true if the passwords match
   // Returns false if the passwords are not a match
-  return passwordMatch
-}
+  return passwordMatch;
+};
 
 const createToken = (payload) => {
   // Accepts a payload with which to create the token
-  let token = jwt.sign(payload, APP_SECRET)
+  let token = jwt.sign(payload, APP_SECRET);
   // Generates the token and encrypts it, returns the token when the process finishes
-  return token
-}
-
+  return token;
+};
 
 const checkAuth = async (req, res, next) => {
   // Check for the token being sent in a header or as a query parameter
@@ -43,6 +42,16 @@ const checkAuth = async (req, res, next) => {
 
     req.user = await User.findById(decodedData.id);
     next();
+
+    // // Check if token is valid and not expired
+    // jwt.verify(token, process.env.APP_SECRET, function (err, decoded) {
+    //   // If valid token, decoded will be the token's entire payload
+    //   // If invalid token, err will be set
+    // req.user = err ? null : decoded.user;
+    // // If your app cares... (optional)
+    // req.exp = err ? null : new Date(decoded.exp * 1000);
+    // return next();
+    // });
   } else {
     // No token was sent
     req.user = null;
@@ -50,13 +59,11 @@ const checkAuth = async (req, res, next) => {
   }
 };
 
-
 module.exports = {
   hashPassword,
   comparePassword,
   createToken,
- // stripToken,
-  //verifyToken,
-  checkAuth
-}
-
+  // stripToken,
+  // verifyToken,
+  checkAuth,
+};
