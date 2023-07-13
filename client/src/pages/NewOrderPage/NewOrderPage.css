@@ -1,0 +1,133 @@
+.new_order_page_container{
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid black;
+    display: flex;
+}
+
+.categories {
+    width: 20%;
+    border: 2px solid black;
+  }
+  
+  .category {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .category.active {
+    background-color: #ccc;
+  }
+  
+  .items {
+    width: 40%;
+    padding: 10px;
+  }
+  
+  .items-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .item-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item-details button{
+    padding: 10px;
+    background-color: orange;
+    border: none;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .item-title {
+    font-weight: bold;
+  }
+  
+  .item-price {
+    color: #888;
+  }
+  
+  .add_to_cart_container {
+    width: 40%;
+    border: 2px solid black;
+  }
+
+
+  .add_to_cart_container .top_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: light rgb(192, 192, 192);
+  }
+
+   .add_to_cart_container .bottom_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid  rgb(0, 0, 0);
+
+   }
+
+   .add_to_cart_container .bottom_container .content p{
+    margin: 10px;
+   
+
+   }
+
+
+   .add_to_cart_container .bottom_container .counter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+
+   }
+
+   .add_to_cart_container .bottom_container .counter button{
+    font-size: 16px;
+    padding: 10px;
+    background-color: orange;
+
+   }
+
+
+
+   .add_to_cart_container .checkout__container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid  rgb(0, 0, 0);
+   }
+
+   
+   .add_to_cart_container .checkout__container .btn__container{
+    flex: 0.4;
+    
+   }
+
+   .add_to_cart_container .checkout__container .btn__container button{
+    width: 100%;
+    background-color: orange;
+    color: white;
+    padding: 10px;
+   }

@@ -3,6 +3,7 @@ import { GetCategories } from "../../services/CategoryServices";
 import { GetItems } from "../../services/ItemServices";
 import { getCart, addItemToCart, checkout, setItemQtyInCart } from '../../services/OrderServices'
 import { useNavigate } from "react-router-dom";
+import "./NewOrderPage.css";
 
 
 const NewOrderPage = ({ user }) => {

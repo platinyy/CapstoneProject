@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const orderController = require ('../controllers/orderController')
+const orderController = require('../controllers/orderController');
 const middleware = require('../middleware')
-
 
 
 router.get('/cart', middleware.checkAuth, orderController.cart);
