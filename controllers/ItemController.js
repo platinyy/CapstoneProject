@@ -2,11 +2,11 @@ const  Item  = require('../models/Item')
 
 const GetItems = async (req, res) => {
   try {
-    const Items= await Item.find({}).sort('name').populate('category').exec();
-    Items.sort((a,b) => a.category.sortOrder - b.category.sortOrder)
-    res.send(Items)
+    const categoryId = req.params.categoryId;
+    const items = await Item.find ({category: categoryId }).exec();
+    res.json(items);
   } catch (error) {
-    throw error
+    res.status(500).json({error: 'Failed to retrieve items for the category'});
   }
 }
 

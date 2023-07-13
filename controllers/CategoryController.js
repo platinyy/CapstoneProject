@@ -5,7 +5,9 @@ const GetCategories = async (req, res) => {
     const Categories= await Category.find({})
     res.send(Categories)
   } catch (error) {
-    throw error
+    res.status(400).json({
+      error: error.message
+    })
   }
 }
 
@@ -14,7 +16,9 @@ const CreateCategory = async (req, res) => {
     const Category = await Category.create({ ...req.body })
     res.send(Category)
   } catch (error) {
-    throw error
+    res.status(400).json({
+      error: error.message
+    })
   }
 }
 
@@ -23,7 +27,9 @@ const UpdateCategory = async (req, res) => {
     const Category = await Category.findByIdAndUpdate(req.params.post_id, req.body, {new: true})
     res.send(Category)
   } catch (error) {
-    throw error
+    res.status(400).json({
+      error: error.message
+    })
   }
 }
 
@@ -32,7 +38,9 @@ const DeleteCategory = async (req, res) => {
     await Category.deleteOne({ _id: req.params.post_id })
     res.send({ msg: 'Category Deleted', payload: req.params.post_id, status: 'Ok' })
   } catch (error) {
-    throw error
+    res.status(400).json({
+      error: error.message
+    })
   }
 }
 
