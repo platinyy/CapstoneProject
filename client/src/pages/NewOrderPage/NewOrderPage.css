@@ -2,13 +2,13 @@
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    border: 2px solid black;
+  
     display: flex;
 }
 
 .categories {
     width: 20%;
-    border: 2px solid black;
+    
   }
   
   .category {
@@ -69,7 +69,7 @@
   
   .add_to_cart_container {
     width: 40%;
-    border: 2px solid black;
+  
   }
 
 
@@ -116,7 +116,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 1px solid  rgb(0, 0, 0);
+    
    }
 
    
