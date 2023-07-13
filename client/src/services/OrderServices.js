@@ -1,11 +1,51 @@
-import Client from './api'
+import Client from "./api"
 
-const BASE_URL = '/api/OrderService'
-
-export function getCart(){
-  return Client(`${BASE_URL}/cart`)
+export const getCart = async () => {
+    try {
+        const res = await Client.get('/orders/cart')
+        return res.data
+    } catch (error) {
+        throw error
+    }
 }
 
-export function addItemToCart(itemID){
-  return Client(`${BASE_URL}/cart/items/${itemID}`, 'POST')
+export const addItemToCart = async (itemId) => {
+    try {
+        const res = await Client.post(`/orders/cart/items/${itemId}`)
+        console.log("res: ", res.data)
+        return res.data
+
+    } catch (error) {
+        throw error
+
+    }
+
+}
+
+export const setItemQtyInCart = async (itemId, newQty) => {
+    try {
+        const res = await Client.put(`/orders/cart/qty`, {
+            itemId, 
+            newQty
+        })
+        console.log("setItem: ", res.data)
+        return res.data
+
+    } catch (error) {
+        throw error
+
+    }
+
+}
+
+export const checkout = async () => {
+    try {
+        const res = await Client.post(`/orders/cart/checkout`)
+        console.log("===",res.data)
+        return res.data
+
+    } catch (error) {
+        throw error
+
+    }
 }
