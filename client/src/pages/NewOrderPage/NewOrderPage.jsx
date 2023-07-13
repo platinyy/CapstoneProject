@@ -1,14 +1,15 @@
 import { useEffect, useState} from 'react'
 import { GetCategories } from '../../services/CategoryServices'
 import { GetItems  } from '../../services/ItemServices'
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom' 
+import { getCart } from '../../services/OrderServices'
 
 
 const NewOrderPage = ({user}) =>{
     let navigate = useNavigate()
     const [Categories, setCategories] = useState([])
     const [Items, setItems] = useState([])
+    const [cart, setCart] = useState(null);
 
     useEffect(() => {
         const handleCategories = async () => {
@@ -24,6 +25,11 @@ const NewOrderPage = ({user}) =>{
             setItems(data)
         }
         handleItems()
+        async function GetOrders() {
+            const cart = await GetOrders();
+            setCart(cart);
+        }
+        GetOrders();
     },[])
     return user ? (
         <div>
@@ -35,7 +41,7 @@ const NewOrderPage = ({user}) =>{
                     if(category.name === item.category.name)
                     {
                         return (<div>
-                            {item.name}{item.emoji}{item.price}
+                            {item.name}{item.emoji}{item.price} 
                         </div>)
                     }
                 })}

@@ -2,7 +2,7 @@ const router = require('express').Router()
 const controller = require('../controllers/ItemController')
 const middleware = require('../middleware')
 
-router.get('/', controller.GetItems)
+router.get('/:categoryId', controller.GetItems)
 router.post(
   '/',
   middleware.stripToken,

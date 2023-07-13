@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
+const { User } = require("../models/index")
 
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
 const APP_SECRET = process.env.APP_SECRET
@@ -62,11 +63,32 @@ const verifyToken = (req, res, next) => {
     res.status(401).send({ status: 'Error', msg: 'Verify Token Error!' })
   }
 }
+const checkAuth = async (req, res, next) => {
+  // Check for the token being sent in a header or as a query parameter
+  let token = req.get("Authorization") || req.query.token;
+  if (token) {
+    console.log("token: ", token);
+    // Remove the 'Bearer ' if it was included in the token header
+    token = token.replace("Bearer ", "");
+    console.log("token2: ", token);
+
+    const decodedData = jwt.verify(token, process.env.APP_SECRET);
+
+    req.user = await User.findById(decodedData.id);
+    next();
+  } else {
+    // No token was sent
+    req.user = null;
+    return next();
+  }
+};
+
 
 module.exports = {
   hashPassword,
   comparePassword,
   createToken,
   stripToken,
-  verifyToken
+  verifyToken,
+  checkAuth
 }
