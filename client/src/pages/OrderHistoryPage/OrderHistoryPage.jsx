@@ -84,7 +84,16 @@ const OrderHistoryPage = ({ user }) => {
               </div>
             ))}
         </div>
+        </div>
+         {/* Order Total */}
+         <div className="order__total">
+          <div>
+            <p>Total</p>
+            <p>{activeOrder ? activeOrder?.totalQty : 0}</p>
+            <p>{activeOrder ? activeOrder?.orderTotal?.toFixed(2) : 0}</p>
 
+
+          </div>
         </div>
       
         </div>
