@@ -4,7 +4,10 @@ import { getOrderHistory, getOrderHistoryById } from "../../services/OrderServic
 import { useNavigate } from "react-router-dom"
 
 const OrderHistoryPage = ({user}) =>{
-
+const navigate = useNavigate();
+const [orders, setOrders] = useState([]);
+const [activeOrder, setActiveOrder] = useState(null);
+ 
     return user ?(
         <div>
             <h1>OrderHistoryPage</h1>
