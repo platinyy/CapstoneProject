@@ -54,6 +54,38 @@ const OrderHistoryPage = ({ user }) => {
           </div>
         ))}
       </div>
+      <div className="top__container">
+          <p>Order Id</p>
+          <p>order date</p>
+        </div>
+
+        {/* Bottom */}
+
+        <div className="order__details__wrapper">
+        <div className="bottom__container">
+          { activeOrder && activeOrder.lineItems &&
+            activeOrder.lineItems.map((lineItem) => (
+              <div className="product">
+                <div className="div1">
+                  <p>{lineItem.item.emoji}</p>
+                </div>
+
+                <div className="div2">
+                  <p>{lineItem.item.name}</p>
+                  <p>{lineItem.item.price}</p>
+                </div>
+
+                <div className="div3">
+                  <p>{lineItem.item.qty}</p>
+                </div>
+                <div className="div4">
+                  <p>{lineItem.extPrice}</p>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        </div>
       
         </div>
 
