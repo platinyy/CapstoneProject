@@ -7,10 +7,20 @@ const OrderHistoryPage = ({user}) =>{
 const navigate = useNavigate();
 const [orders, setOrders] = useState([]);
 const [activeOrder, setActiveOrder] = useState(null);
+
+const handleSelectOrder = async (order) => {
+    setActiveOrder(order);
+
+   const active = await getOrderHistoryById(order);
+   setActiveOrder(active)
+
+
+
+  };
  
     return user ?(
         <div>
-            <h1>OrderHistoryPage</h1>
+            <h1>Your Orders</h1>
         </div>
     )
     :(
