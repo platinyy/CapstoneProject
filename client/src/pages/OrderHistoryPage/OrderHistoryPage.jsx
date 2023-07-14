@@ -28,7 +28,7 @@ const OrderHistoryPage = ({ user }) => {
 
 
     return user ? (
-        <div>
+        <div className="order_history_page_container">
             <div className="sidebar__container">
                 <div className="logo">
                     <p>Dion's Coffee Shop</p>
@@ -54,6 +54,7 @@ const OrderHistoryPage = ({ user }) => {
           </div>
         ))}
       </div>
+      
         </div>
 
     )
