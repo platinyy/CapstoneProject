@@ -49,3 +49,27 @@ export const checkout = async () => {
 
     }
 }
+
+export const getOrderHistory = async () => {
+    try {
+        const res = await Client.get(`/orders/history`)
+        return res.data
+
+    } catch (error) {
+        throw error
+
+    }
+}
+
+export const getOrderHistoryById = async (id) => {
+    try {
+        console.log("Hi")
+        const res = await Client.get(`/orders/history/${id}`)
+        console.log("ddd: ", res.data)
+        return res.data
+
+    } catch (error) {
+        throw error
+
+    }
+}
