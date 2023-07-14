@@ -3,12 +3,13 @@ const logger = require('morgan')
 const cors = require('cors')
 require("dotenv").config()
 
-const AuthRouter = require('./routes/AuthRouter')
-
+const db = require('./db')
 
 const PORT = process.env.PORT || 3001
 
-const db = require('./db')
+
+
+const AuthRouter = require('./routes/AuthRouter')
 const CategoryRouter = require('./routes/CategoryRouter')
 const ItemRouter = require('./routes/ItemRouter')
 const OrderRouter = require('./routes/OrderRouter')

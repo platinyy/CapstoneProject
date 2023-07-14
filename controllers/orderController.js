@@ -44,10 +44,37 @@ const cart = async (req, res) => {
       res.status(400).json({ msg: e.message });
     }
   };
+  const history = async (req, res) => {
+    // Sort most recent orders first
+    try {
+        const orders = await Order.find({ user: req.user._id, isPaid: true })
+            .sort("-updatedAt")
+            .exec();
+        res.status(200).json(orders);
+    } catch (e) {
+        res.status(400).json({ msg: e.message });
+    }
+};
+
+const historyById = async (req, res) => {
+    try {
+        const historyById = await Order.findById(req.params.id);
+        console.log("===", historyById);
+        if (historyById === null) {
+            res.status(404).json({ msg: "history not found" });
+        } else {
+            res.status(200).json(historyById);
+        }
+    } catch (e) {
+        res.status(400).json({ msg: e.message });
+    }
+};
 
 module.exports = {
     cart,
     addToCart,
     setItemQtyInCart,
     checkout,
+    history,
+    historyById
 };
