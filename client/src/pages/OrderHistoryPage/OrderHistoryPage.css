@@ -1,0 +1,128 @@
+.order_history_page_container{
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid black;
+    display: flex;
+}
+
+
+.sidebar__container{
+    min-height: 90vh;
+    width: 20%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sidebar__container .logo{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: orange;
+}
+
+.sidebar__container button{
+    background-color: orange;
+    color: white;
+    padding: 15px;
+}
+
+
+
+.sidebar__container .logo p{
+    color: white;
+}
+
+
+.order__history__container{
+    width: 40%;
+    min-height: 90vh;
+    padding: 10px;
+    overflow-y: scroll;
+    border: 2px solid black;
+
+
+}
+
+
+.order__history__container .order__history{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+
+.order__history__container .order__history div p{
+    margin: 5px;
+}
+.order__details__container{
+    min-height: 90vh;
+    
+    width: 40%;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+
+.order__details__container .top__container{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 15px;
+
+}
+
+.order__details__container .order__details__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.order__details__container .bottom__container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 15px;
+
+}
+
+.bottom__container .product {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.bottom__container .product .div2 {
+    display: flex;
+    align-items: center;
+}
+
+.order__details__container .bottom__container .div2 p{
+    margin: 5px;
+}
+
+
+.order__details__container .order__total div{
+display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+
+
+.order__details__container .order__total div{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getOrderHistory, getOrderHistoryById } from "../../services/OrderServices";
 import { useNavigate } from "react-router-dom";
-
+import "./OrderHistoryPage.css";
 
 const OrderHistoryPage = ({ user }) => {
     const navigate = useNavigate();
