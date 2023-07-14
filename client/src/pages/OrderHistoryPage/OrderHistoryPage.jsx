@@ -36,66 +36,68 @@ const OrderHistoryPage = ({ user }) => {
                 <button onClick={() => navigate("/orders/new")}>New Order</button>
                 <button >Logout</button>
             </div>
-         {/* Order History */}
-      <div className="order__history__container">
-        {orders.map((history, i) => (
-          <div
-            className="order__history"
-            onClick={() => handleSelectOrder(history._id)}
-          >
-            <div className="div1">
-              <p>{history.orderId}</p>
-              <p>{history.createdAt}</p>
+            {/* Order History */}
+            <div className="order__history__container">
+                {orders.map((history, i) => (
+                    <div
+                        className="order__history"
+                        onClick={() => handleSelectOrder(history._id)}
+                    >
+                        <div className="div1">
+                            <p>{history.orderId}</p>
+                            <p>{history.createdAt}</p>
+                        </div>
+                        <div className="div2">
+                            <p>{history.orderTotal.toFixed(2)}</p>
+                            <p>{history.totalQty}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
-            <div className="div2">
-              <p>{history.orderTotal.toFixed(2)}</p>
-              <p>{history.totalQty}</p>
+
+            <div className="order__details__container">
+                <div className="top__container">
+                    <p>Order Id</p>
+                    <p>order date</p>
+                </div>
+
+                {/* Bottom */}
+
+                <div className="order__details__wrapper">
+                    <div className="bottom__container">
+                        {activeOrder && activeOrder.lineItems &&
+                            activeOrder.lineItems.map((lineItem) => (
+                                <div className="product">
+                                    <div className="div1">
+                                        <p>{lineItem.item.emoji}</p>
+                                    </div>
+
+                                    <div className="div2">
+                                        <p>{lineItem.item.name}</p>
+                                        <p>{lineItem.item.price}</p>
+                                    </div>
+
+                                    <div className="div3">
+                                        <p>{lineItem.item.qty}</p>
+                                    </div>
+                                    <div className="div4">
+                                        <p>{lineItem.extPrice}</p>
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+                {/* Order Total */}
+                <div className="order__total">
+                    <div>
+                        <p>Total</p>
+                        <p>{activeOrder ? activeOrder?.totalQty : 0}</p>
+                        <p>{activeOrder ? activeOrder?.orderTotal?.toFixed(2) : 0}</p>
+
+
+                    </div>
+                </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="top__container">
-          <p>Order Id</p>
-          <p>order date</p>
-        </div>
-
-        {/* Bottom */}
-
-        <div className="order__details__wrapper">
-        <div className="bottom__container">
-          { activeOrder && activeOrder.lineItems &&
-            activeOrder.lineItems.map((lineItem) => (
-              <div className="product">
-                <div className="div1">
-                  <p>{lineItem.item.emoji}</p>
-                </div>
-
-                <div className="div2">
-                  <p>{lineItem.item.name}</p>
-                  <p>{lineItem.item.price}</p>
-                </div>
-
-                <div className="div3">
-                  <p>{lineItem.item.qty}</p>
-                </div>
-                <div className="div4">
-                  <p>{lineItem.extPrice}</p>
-                </div>
-              </div>
-            ))}
-        </div>
-        </div>
-         {/* Order Total */}
-         <div className="order__total">
-          <div>
-            <p>Total</p>
-            <p>{activeOrder ? activeOrder?.totalQty : 0}</p>
-            <p>{activeOrder ? activeOrder?.orderTotal?.toFixed(2) : 0}</p>
-
-
-          </div>
-        </div>
-      
         </div>
 
     )
