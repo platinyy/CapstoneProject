@@ -17,19 +17,25 @@ const OrderHistoryPage = ({ user }) => {
     useEffect(() => {
         // Load previous orders (paid)
         async function fetchOrderHistory() {
-          const orders = await getOrderHistory();
-          setOrders(orders);
-          // If no orders, activeOrder will be set to null below
-         setActiveOrder(orders[0])
-          
+            const orders = await getOrderHistory();
+            setOrders(orders);
+            // If no orders, activeOrder will be set to null below
+            setActiveOrder(orders[0])
+
         }
         fetchOrderHistory();
-      }, []);
+    }, []);
 
 
     return user ? (
         <div>
-            <h1>Your Orders</h1>
+            <div className="sidebar__container">
+                <div className="logo">
+                    <p>Dion's Coffee Shop</p>
+                </div>
+                <button onClick={() => navigate("/orders/new")}>New Order</button>
+                <button >Logout</button>
+            </div>
         </div>
     )
         : (
