@@ -25,7 +25,7 @@ export const addItemToCart = async (itemId) => {
 export const setItemQtyInCart = async (itemId, newQty) => {
     try {
         const res = await Client.put(`/orders/cart/qty`, {
-            itemId, 
+            itemId,
             newQty
         })
         console.log("setItem: ", res.data)
@@ -38,10 +38,11 @@ export const setItemQtyInCart = async (itemId, newQty) => {
 
 }
 
+
 export const checkout = async () => {
     try {
         const res = await Client.post(`/orders/cart/checkout`)
-        console.log("===",res.data)
+        console.log("===", res.data)
         return res.data
 
     } catch (error) {

@@ -3,10 +3,9 @@ const logger = require('morgan')
 const cors = require('cors')
 require("dotenv").config()
 
-const db = require('./db')
-
 const PORT = process.env.PORT || 3001
 
+const db = require('./db')
 
 
 const AuthRouter = require('./routes/AuthRouter')
@@ -23,8 +22,8 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/auth', AuthRouter)
 app.use('/categories', CategoryRouter)
-app.use('/items' , ItemRouter)
-app.use('/orders' , OrderRouter)
+app.use('/items', ItemRouter)
+app.use("/orders", OrderRouter)
 
 app.use('/', (req, res) => {
   res.send(`Connected!`)

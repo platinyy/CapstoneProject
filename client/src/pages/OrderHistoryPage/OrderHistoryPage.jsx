@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import { getOrderHistory, getOrderHistoryById } from "../../services/OrderServices"
+import { useEffect, useState } from "react";
+import { getOrderHistory, getOrderHistoryById } from "../../services/OrderServices";
+import { useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom"
 
 const OrderHistoryPage = ({ user }) => {
     const navigate = useNavigate();
@@ -13,7 +13,9 @@ const OrderHistoryPage = ({ user }) => {
 
         const active = await getOrderHistoryById(order);
         setActiveOrder(active)
+
     };
+
     useEffect(() => {
         // Load previous orders (paid)
         async function fetchOrderHistory() {
@@ -26,16 +28,17 @@ const OrderHistoryPage = ({ user }) => {
         fetchOrderHistory();
     }, []);
 
-
     return user ? (
         <div className="order_history_page_container">
+            {/* Sidebar */}
             <div className="sidebar__container">
                 <div className="logo">
-                    <p>Dion's Coffee Shop</p>
+                    <p>SEI CAFE</p>
                 </div>
                 <button onClick={() => navigate("/orders/new")}>New Order</button>
                 <button >Logout</button>
             </div>
+
             {/* Order History */}
             <div className="order__history__container">
                 {orders.map((history, i) => (
@@ -55,7 +58,10 @@ const OrderHistoryPage = ({ user }) => {
                 ))}
             </div>
 
+            {/* Order Details */}
+
             <div className="order__details__container">
+                {/* Top */}
                 <div className="top__container">
                     <p>Order Id</p>
                     <p>order date</p>
@@ -86,7 +92,10 @@ const OrderHistoryPage = ({ user }) => {
                                 </div>
                             ))}
                     </div>
+
                 </div>
+
+
                 {/* Order Total */}
                 <div className="order__total">
                     <div>
@@ -99,14 +108,12 @@ const OrderHistoryPage = ({ user }) => {
                 </div>
             </div>
         </div>
+    ) : (
+        <div className="protected">
+            <h3>Oops! You must be signed in to do that!</h3>
+            <button onClick={() => navigate("/signin")}>Sign In</button>
+        </div>
+    );
+};
 
-    )
-        : (
-            <div className="protected">
-                <h3>Oops! You must be signed in to do that!</h3>
-                <button onClick={() => navigate('/signin')}>Sign In</button>
-            </div>
-        )
-}
-
-export default OrderHistoryPage
+export default OrderHistoryPage;

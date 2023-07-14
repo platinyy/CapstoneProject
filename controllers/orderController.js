@@ -1,50 +1,56 @@
-const Order = require('../models/order');
+const Order = require("../models/order");
 const jwt = require("jsonwebtoken");
 
-
-
+// A cart is the unpaid order for a user
 const cart = async (req, res) => {
     try {
-      const cart = await Order.getCart(req.user._id);
-      res.status(200).json(cart);
+        const cart = await Order.getCart(req.user._id);
+        res.status(200).json(cart);
     } catch (e) {
-      res.status(400).json({ msg: e.message });
+        res.status(400).json({ msg: e.message });
     }
-  };
-  
-  const addToCart = async (req, res) => {
+};
+
+// Add an item to the cart
+const addToCart = async (req, res) => {
     try {
-      if (!req.user) {
-        return res.status(401).json({ msg: "Unauthorized" });
-      }
-  
-      const cart = await Order.getCart(req.user._id);
-      await cart.addItemToCart(req.params.id);
-      res.status(200).json(cart);
+        if (!req.user) {
+            return res.status(401).json({ msg: "Unauthorized" });
+        }
+
+        const cart = await Order.getCart(req.user._id);
+        await cart.addItemToCart(req.params.id);
+        res.status(200).json(cart);
     } catch (e) {
-      res.status(400).json({ msg: e.message });
+        res.status(400).json({ msg: e.message });
     }
-  };
-  const setItemQtyInCart = async (req, res) => {
+};
+
+// Updates an item's qty in the cart
+const setItemQtyInCart = async (req, res) => {
     try {
-      const cart = await Order.getCart(req.user._id);
-      await cart.setItemQty(req.body.itemId, req.body.newQty);
-      res.status(200).json(cart);
+        const cart = await Order.getCart(req.user._id);
+        await cart.setItemQty(req.body.itemId, req.body.newQty);
+        res.status(200).json(cart);
     } catch (e) {
-      res.status(400).json({ msg: e.message });
+        res.status(400).json({ msg: e.message });
     }
-  };
-  const checkout = async (req, res) => {
+};
+
+// Update the cart's isPaid property to true
+const checkout = async (req, res) => {
     try {
-      const cart = await Order.getCart(req.user._id);
-      cart.isPaid = true;
-      await cart.save();
-      res.status(200).json(cart);
+        const cart = await Order.getCart(req.user._id);
+        cart.isPaid = true;
+        await cart.save();
+        res.status(200).json(cart);
     } catch (e) {
-      res.status(400).json({ msg: e.message });
+        res.status(400).json({ msg: e.message });
     }
-  };
-  const history = async (req, res) => {
+};
+
+// Return the logged in user's paid order history
+const history = async (req, res) => {
     // Sort most recent orders first
     try {
         const orders = await Order.find({ user: req.user._id, isPaid: true })
@@ -76,5 +82,5 @@ module.exports = {
     setItemQtyInCart,
     checkout,
     history,
-    historyById
+    historyById,
 };
