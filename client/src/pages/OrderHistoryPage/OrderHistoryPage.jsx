@@ -33,7 +33,7 @@ const OrderHistoryPage = ({ user }) => {
             {/* Sidebar */}
             <div className="sidebar__container">
                 <div className="logo">
-                    <p>SEI CAFE</p>
+                    <p>Dion's Coffee Shop</p>
                 </div>
                 <button onClick={() => navigate("/orders/new")}>New Order</button>
                 <button >Logout</button>
