@@ -36,7 +36,26 @@ const OrderHistoryPage = ({ user }) => {
                 <button onClick={() => navigate("/orders/new")}>New Order</button>
                 <button >Logout</button>
             </div>
+         {/* Order History */}
+      <div className="order__history__container">
+        {orders.map((history, i) => (
+          <div
+            className="order__history"
+            onClick={() => handleSelectOrder(history._id)}
+          >
+            <div className="div1">
+              <p>{history.orderId}</p>
+              <p>{history.createdAt}</p>
+            </div>
+            <div className="div2">
+              <p>{history.orderTotal.toFixed(2)}</p>
+              <p>{history.totalQty}</p>
+            </div>
+          </div>
+        ))}
+      </div>
         </div>
+
     )
         : (
             <div className="protected">
