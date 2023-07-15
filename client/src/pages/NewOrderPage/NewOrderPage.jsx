@@ -35,6 +35,7 @@ const NewOrderPage = ({ user }) => {
     console.log("check: ", check)
     if(check.isPaid == true){
         setCart([])
+        navigate('/orders')
     }else{
         console.log("err incurred")
     }

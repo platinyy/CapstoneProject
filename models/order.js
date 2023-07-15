@@ -36,6 +36,7 @@ orderSchema.virtual('orderId').get(function () {
     return this.id.slice(-6).toUpperCase();
 });
 
+
 orderSchema.statics.getCart = function (userId) {
     // 'this' is the Order model
     return this.findOneAndUpdate(

@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { getOrderHistory, getOrderHistoryById } from "../../services/OrderServices";
 import { useNavigate } from "react-router-dom";
 import "./OrderHistoryPage.css";
+import moment from "moment";
+
 
 const OrderHistoryPage = ({ user }) => {
     const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [activeOrder, setActiveOrder] = useState(null);
+    const datea = moment;
 
+    var date = new Date();
     const handleSelectOrder = async (order) => {
         setActiveOrder(order);
 
@@ -36,7 +40,7 @@ const OrderHistoryPage = ({ user }) => {
                     <p>Dion's Coffee Shop</p>
                 </div>
                 <button onClick={() => navigate("/orders/new")}>New Order</button>
-                <button >Logout</button>
+                
             </div>
 
             {/* Order History */}
@@ -48,7 +52,7 @@ const OrderHistoryPage = ({ user }) => {
                     >
                         <div className="div1">
                             <p>{history.orderId}</p>
-                            <p>{history.createdAt}</p>
+                            <p>{datea(history.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
                         </div>
                         <div className="div2">
                             <p>{history.orderTotal.toFixed(2)}</p>
