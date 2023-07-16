@@ -10,7 +10,7 @@ const Home = () => {
       <h1>Welcome to Dion's Coffee Shop ☕</h1>
       <section className="welcome-signin">
         <button onClick={() => navigate('/signin')}>
-          Click here to place your order !
+          Click here to Sign in !
         </button>
       </section>
     </div>

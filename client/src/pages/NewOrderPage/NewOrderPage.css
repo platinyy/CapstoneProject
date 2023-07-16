@@ -3,6 +3,7 @@
     display: flex; 
     height: 92vh;
   justify-content: center;
+  background-color: white;
 
 }
 
@@ -118,8 +119,6 @@ background-color: aliceblue;
     color: white;
 
    }
-
-
 
 .checkout__container{
   display: flex;
