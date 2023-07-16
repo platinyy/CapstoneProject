@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { GetCategories } from "../../services/CategoryServices";
 import { GetItems } from "../../services/ItemServices";
-import { getCart, addItemToCart, checkout, setItemQtyInCart } from '../../services/OrderServices'
+import { getCart, addItemToCart, checkout, setItemQtyInCart, DeleteItemToCart} from '../../services/OrderServices'
 import { useNavigate } from "react-router-dom";
 import "./NewOrderPage.css";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 const NewOrderPage = ({ user }) => {
+  
   let navigate = useNavigate();
   const [cart, setCart] = useState([]);
   const [Categories, setCategories] = useState([]);
@@ -14,6 +16,7 @@ const NewOrderPage = ({ user }) => {
   const [selectedCategory, setSelectedCategory] = useState(
     "64aeb60f661de7a2b22825ee"
   );
+
 
   const handleCategoryClick = async (categoryId) => {
     console.log("---", categoryId);
@@ -28,16 +31,26 @@ const NewOrderPage = ({ user }) => {
     const updatedCart = await addItemToCart(itemId);
     setCart(updatedCart);
   }
+  async function handleDeleteOrder(itemId) {
+    const check = await checkout()
+    console.log("itemid ", itemId);
+    const updatedCart = await DeleteItemToCart(itemId);
+    setCart(updatedCart);
+    check.totalQty=0;
+
+  }
+
 
   
   async function handleCheckOut(itemId) {
+    if (!cart) return null;
     const check = await checkout()
     console.log("check: ", check)
-    if(check.isPaid == true){
+    if(check.isPaid == true && check.totalQty > 0 ){
         setCart([])
         navigate('/orders')
     }else{
-        console.log("err incurred")
+        alert("You must have at least one item in your order to Checkout")
     }
   }
 
@@ -45,6 +58,7 @@ const NewOrderPage = ({ user }) => {
     const updatedCart = await setItemQtyInCart(itemId, newQty);
     setCart(updatedCart);
   }
+ 
 
   //   async function handleChangeQty(itemId, newQty) {
   //   const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
@@ -56,7 +70,7 @@ const NewOrderPage = ({ user }) => {
     const handleCategories = async () => {
       const data = await GetCategories();
       setCategories(data);
-      console.log("selectedCategory", selectedCategory);
+      
     };
     handleCategories();
     // ======================
@@ -81,10 +95,19 @@ const NewOrderPage = ({ user }) => {
   }, [selectedCategory]);
 
   return user ? (
+
     <div className="new_order_page_container">
+      
       {/* Categories */}
+   
       <div className="categories">
+      <div className="logo">
+                    <p>Dion's Coffee Shop</p>
+                </div>
+                
+        <h1>Categories</h1>
         {Categories.map((category) => (
+         
           <div
             key={category._id}
             className={`category ${
@@ -100,6 +123,7 @@ const NewOrderPage = ({ user }) => {
       {/* Items */}
       <div className="items">
         <div className="items-list">
+          <h1 className="itemsh1">Menu Items</h1>
           {Items.map((item) => (
             <div key={item._id} className="item">
               <div>{item.emoji}</div>
@@ -112,11 +136,11 @@ const NewOrderPage = ({ user }) => {
           ))}
         </div>
       </div>
-
+   
       <div className="add_to_cart_container">
         <div className="top_container">
-          <p>New Order</p>
-          <p>Date 7/2/23</p>
+        
+          
         </div>
 
         {/* <div className='cart__items_container'>
@@ -144,8 +168,13 @@ const NewOrderPage = ({ user }) => {
             </div> */}
 
         <div className="cart__items_container">
+        <div className="icon1">
+        <h1 className="iconheader">Your</h1>
+        <FontAwesomeIcon icon={faCartShopping} beat size="2xl" style={{color: "#4c76bd",}} />
+          </div>
           {cart.lineItems &&
             cart.lineItems.map((lineItem) => (
+             
               <div className="bottom_container" key={lineItem._id}>
                 <div className="image">
                   <p>{lineItem.item.emoji}</p>
@@ -168,6 +197,7 @@ const NewOrderPage = ({ user }) => {
                 </div>
 
                 <div className="total_price">{lineItem?.extPrice?.toFixed(2)}</div>
+
               </div>
             ))}
         </div>
@@ -179,8 +209,8 @@ const NewOrderPage = ({ user }) => {
 
           
           </div>
-          <p>{cart.totalQty}</p>
-          <p>{cart?.orderTotal?.toFixed(2)}</p>
+          <p>Item Qty: {cart.totalQty}</p>
+          <p>Total Price: {cart?.orderTotal?.toFixed(2)}</p>
         </div>
       </div>
     </div>

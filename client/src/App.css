@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Rubik:wght@300;500&display=swap');
 
 :root {
   --primary-bg: #000411;
@@ -10,9 +10,9 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
+  font-family: 'Rubik', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--secondary-bg);
 }
 
 button {
@@ -33,7 +33,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-bg);
+  background-color: steelblue;
 }
 
 .logo,
@@ -48,12 +48,12 @@ nav {
 
 nav a,
 nav h3 {
-  text-decoration-color: var(--primary-bg);
+
   margin: auto 1em;
-  color: var(--link-color-primary);
+  color:white;
   padding: 5px 10px;
   border-radius: 6px;
-  font-weight: 800;
+  font-weight:300;
   transition: all 0.2s ease;
 }
 
@@ -182,9 +182,7 @@ form button:disabled {
   height: 50px;
 }
 
-.card img {
-  width: 100%;
-}
+
 
 .protected {
   display: flex;

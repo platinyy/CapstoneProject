@@ -39,6 +39,7 @@ const OrderHistoryPage = ({ user }) => {
                 <div className="logo">
                     <p>Dion's Coffee Shop</p>
                 </div>
+               
                 <button onClick={() => navigate("/orders/new")}>New Order</button>
                 
             </div>
@@ -51,12 +52,12 @@ const OrderHistoryPage = ({ user }) => {
                         onClick={() => handleSelectOrder(history._id)}
                     >
                         <div className="div1">
-                            <p>{history.orderId}</p>
-                            <p>{datea(history.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
+                            <p>Order Number: {history.orderId}</p>
+                            <p>Date: {datea(history.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
                         </div>
                         <div className="div2">
-                            <p>{history.orderTotal.toFixed(2)}</p>
-                            <p>{history.totalQty}</p>
+                            <p>Price: {history.orderTotal.toFixed(2)}</p>
+                            <p>Items Qty: {history.totalQty}</p>
                         </div>
                     </div>
                 ))}
@@ -66,10 +67,7 @@ const OrderHistoryPage = ({ user }) => {
 
             <div className="order__details__container">
                 {/* Top */}
-                <div className="top__container">
-                    <p>Order Id</p>
-                    <p>order date</p>
-                </div>
+           
 
                 {/* Bottom */}
 
@@ -78,21 +76,10 @@ const OrderHistoryPage = ({ user }) => {
                         {activeOrder && activeOrder.lineItems &&
                             activeOrder.lineItems.map((lineItem) => (
                                 <div className="product">
-                                    <div className="div1">
                                         <p>{lineItem.item.emoji}</p>
-                                    </div>
-
-                                    <div className="div2">
                                         <p>{lineItem.item.name}</p>
-                                        <p>{lineItem.item.price}</p>
-                                    </div>
-
-                                    <div className="div3">
-                                        <p>{lineItem.item.qty}</p>
-                                    </div>
-                                    <div className="div4">
-                                        <p>{lineItem.extPrice}</p>
-                                    </div>
+                                        <p>Qty: {lineItem.qty}</p>
+                                        <p>{lineItem.extPrice.toFixed(2)}</p>
                                 </div>
                             ))}
                     </div>
@@ -102,13 +89,13 @@ const OrderHistoryPage = ({ user }) => {
 
                 {/* Order Total */}
                 <div className="order__total">
-                    <div>
-                        <p>Total</p>
-                        <p>{activeOrder ? activeOrder?.totalQty : 0}</p>
-                        <p>{activeOrder ? activeOrder?.orderTotal?.toFixed(2) : 0}</p>
+                   
+                        
+                        <p>Items Qty: {activeOrder ? activeOrder?.totalQty : 0}</p>
+                        <p>Total Price: {activeOrder ? activeOrder?.orderTotal?.toFixed(2) : 0}</p>
 
 
-                    </div>
+                    
                 </div>
             </div>
         </div>

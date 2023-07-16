@@ -21,6 +21,22 @@ export const addItemToCart = async (itemId) => {
     }
 
 }
+export const DeleteItemToCart = async (itemId, newQty) => {
+    try {
+        const res = await Client.put(`/orders/cart/qty`, {
+            itemId,
+            newQty
+        })
+        console.log("setItem: ", res.data)
+        return res.data
+
+    } catch (error) {
+        throw error
+
+    }
+    
+
+}
 
 export const setItemQtyInCart = async (itemId, newQty) => {
     try {
@@ -35,6 +51,7 @@ export const setItemQtyInCart = async (itemId, newQty) => {
         throw error
 
     }
+    
 
 }
 

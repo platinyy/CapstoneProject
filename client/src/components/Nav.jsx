@@ -30,8 +30,10 @@ const Nav = ({ user, handleLogOut }) => {
          
         </div>
       </Link>
+      
       {user ? userOptions : publicOptions}
     </header>
+    
   )
 }
 
