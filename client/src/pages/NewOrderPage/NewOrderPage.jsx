@@ -43,9 +43,8 @@ const NewOrderPage = ({ user }) => {
 
   
   async function handleCheckOut(itemId) {
-    if (!cart) return null;
+    
     const check = await checkout()
-    console.log("check: ", check)
     if(check.isPaid == true && check.totalQty > 0 ){
         setCart([])
         navigate('/orders')
@@ -166,18 +165,19 @@ const NewOrderPage = ({ user }) => {
 
                     </div> 
             </div> */}
-
+      
         <div className="cart__items_container">
         <div className="icon1">
         <h1 className="iconheader">Your</h1>
         <FontAwesomeIcon icon={faCartShopping} beat size="2xl" style={{color: "#4c76bd",}} />
           </div>
-          {cart.lineItems &&
+          {
+          cart.lineItems &&
             cart.lineItems.map((lineItem) => (
              
               <div className="bottom_container" key={lineItem._id}>
                 <div className="image">
-                  <p>{lineItem.item.emoji}</p>
+            <p>{lineItem.item.emoji}</p>
                 </div>
                 <div className="content">
                   <p>{lineItem.item.name}</p>
@@ -203,15 +203,25 @@ const NewOrderPage = ({ user }) => {
         </div>
 
         {/* Checkout */}
-        <div className="checkout__container">
-          <div className="btn__container">
-            <button onClick={handleCheckOut}>Checkout</button>
+              
+        
+            {cart.totalQty > 0 ?
+            <div className="checkout__container">
 
-          
-          </div>
+            <div className="btn__container">
+            <button onClick={handleCheckOut}>Checkout</button>
+            </div>
           <p>Item Qty: {cart.totalQty}</p>
           <p>Total Price: {cart?.orderTotal?.toFixed(2)}</p>
-        </div>
+            
+        </div> : <h3>Feeling Hungry?</h3>
+            }
+              
+            
+
+            
+           
+          
       </div>
     </div>
   ) : (

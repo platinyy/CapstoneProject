@@ -76,26 +76,22 @@ background-color: aliceblue;
     flex-direction: column;
     width: 38%;
     align-items: center;
-    align-items: center;
     border: 1px solid steelblue; 
     border-radius: 10px;
     margin:5px 5px;
     background-color: aliceblue;
+   
   }
 
 
-  .add_to_cart_container .top_container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: light rgb(192, 192, 192);
-  }
+ 
 
    .add_to_cart_container .bottom_container{
     display: flex;
     justify-content: space-between;
     align-items:center;
     font-size: 20px;
+    margin-right: 80px;
 
    }
 
@@ -124,7 +120,7 @@ background-color: aliceblue;
   display: flex;
   width: 90%;
   justify-content: space-around;
-  margin-left: 120px;
+  margin-left: 40px;
 }
 
    

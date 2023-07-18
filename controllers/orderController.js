@@ -33,6 +33,7 @@ const setItemQtyInCart = async (req, res) => {
         await cart.setItemQty(req.body.itemId, req.body.newQty);
         res.status(200).json(cart);
     } catch (e) {
+        console.log(e)
         res.status(400).json({ msg: e.message });
     }
 };

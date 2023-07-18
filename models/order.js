@@ -70,8 +70,10 @@ orderSchema.methods.setItemQty = function (itemId, newQty) {
     // Find the line item in the cart for the menu item
     const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId));
     if (lineItem && newQty <= 0) {
+        console.log(lineItem)
         // Calling remove, removes itself from the cart.lineItems array
-        lineItem.remove();
+        cart.lineItems=[]
+       
     } else if (lineItem) {
         // Set the new qty - positive value is assured thanks to prev if
         lineItem.qty = newQty;
