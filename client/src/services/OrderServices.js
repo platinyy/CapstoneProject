@@ -9,9 +9,9 @@ export const getCart = async () => {
     }
 }
 
-export const addItemToCart = async (itemId) => {
+export const addItemToCart = async (itemId, userId) => {
     try {
-        const res = await Client.post(`/orders/cart/items/${itemId}`)
+        const res = await Client.post(`/orders/cart/items/${itemId}/${userId}`)
         console.log("res: ", res.data)
         return res.data
 
@@ -21,26 +21,11 @@ export const addItemToCart = async (itemId) => {
     }
 
 }
-export const DeleteItemToCart = async (itemId, newQty) => {
+
+
+export const setItemQtyInCart = async (itemId, newQty,userId) => {
     try {
-        const res = await Client.put(`/orders/cart/qty`, {
-            itemId,
-            newQty
-        })
-        console.log("setItem: ", res.data)
-        return res.data
-
-    } catch (error) {
-        throw error
-
-    }
-    
-
-}
-
-export const setItemQtyInCart = async (itemId, newQty) => {
-    try {
-        const res = await Client.put(`/orders/cart/qty`, {
+        const res = await Client.put(`/orders/cart/qty/${userId}`, {
             itemId,
             newQty
         })
@@ -56,9 +41,9 @@ export const setItemQtyInCart = async (itemId, newQty) => {
 }
 
 
-export const checkout = async () => {
+export const checkout = async (userId) => {
     try {
-        const res = await Client.post(`/orders/cart/checkout`)
+        const res = await Client.post(`/orders/cart/checkout/${userId}`)
         console.log("===", res.data)
         return res.data
 
@@ -68,9 +53,9 @@ export const checkout = async () => {
     }
 }
 
-export const getOrderHistory = async () => {
+export const getOrderHistory = async (userId) => {
     try {
-        const res = await Client.get(`/orders/history`)
+        const res = await Client.get(`/orders/history/${userId}`)
         return res.data
 
     } catch (error) {
@@ -81,9 +66,9 @@ export const getOrderHistory = async () => {
 
 export const getOrderHistoryById = async (id) => {
     try {
-        console.log("Hi")
-        const res = await Client.get(`/orders/history/${id}`)
-        console.log("ddd: ", res.data)
+      
+        const res = await Client.get(`/orders/history/orders/${id}`)
+       
         return res.data
 
     } catch (error) {

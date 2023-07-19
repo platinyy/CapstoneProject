@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GetCategories } from "../../services/CategoryServices";
 import { GetItems } from "../../services/ItemServices";
-import { getCart, addItemToCart, checkout, setItemQtyInCart, DeleteItemToCart} from '../../services/OrderServices'
+import { getCart, addItemToCart, checkout, setItemQtyInCart} from '../../services/OrderServices'
 import { useNavigate } from "react-router-dom";
 import "./NewOrderPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -26,26 +26,19 @@ const NewOrderPage = ({ user }) => {
     setItems(data);
   };
 
-  async function handleAddToOrder(itemId) {
+  async function handleAddToOrder(itemId,userId) {
     console.log("itemid ", itemId);
-    const updatedCart = await addItemToCart(itemId);
+    const updatedCart = await addItemToCart(itemId,userId);
     setCart(updatedCart);
   }
-  async function handleDeleteOrder(itemId) {
-    const check = await checkout()
-    console.log("itemid ", itemId);
-    const updatedCart = await DeleteItemToCart(itemId);
-    setCart(updatedCart);
-    check.totalQty=0;
 
-  }
 
 
   
-  async function handleCheckOut(itemId) {
+  async function handleCheckOut(itemId,userId) {
     
-    const check = await checkout()
-    if(check.isPaid == true && check.totalQty > 0 ){
+    const check = await checkout(itemId,userId)
+    if(check.isPaid == true){
         setCart([])
         navigate('/orders')
     }else{
@@ -54,7 +47,7 @@ const NewOrderPage = ({ user }) => {
   }
 
   async function handleChangeQty(itemId, newQty) {
-    const updatedCart = await setItemQtyInCart(itemId, newQty);
+    const updatedCart = await setItemQtyInCart(itemId, newQty,user.id);
     setCart(updatedCart);
   }
  
@@ -129,7 +122,7 @@ const NewOrderPage = ({ user }) => {
               <div className="item-title">{item.name}</div>
               <div className="item-details">
                 <div className="item-price">${item.price}</div>
-                <button onClick={() => handleAddToOrder(item._id)}>Add</button>
+                <button onClick={() => handleAddToOrder(item._id,user.id)}>Add</button>
               </div>
             </div>
           ))}
@@ -169,7 +162,7 @@ const NewOrderPage = ({ user }) => {
         <div className="cart__items_container">
         <div className="icon1">
         <h1 className="iconheader">Your</h1>
-        <FontAwesomeIcon icon={faCartShopping} beat size="2xl" style={{color: "#4c76bd",}} />
+        <FontAwesomeIcon icon={faCartShopping} beat size="2xl" style={{color: "steelblue",}} />
           </div>
           {
           cart.lineItems &&
@@ -209,7 +202,7 @@ const NewOrderPage = ({ user }) => {
             <div className="checkout__container">
 
             <div className="btn__container">
-            <button onClick={handleCheckOut}>Checkout</button>
+            <button onClick={() => handleCheckOut(user.id)}>Checkout</button>
             </div>
           <p>Item Qty: {cart.totalQty}</p>
           <p>Total Price: {cart?.orderTotal?.toFixed(2)}</p>

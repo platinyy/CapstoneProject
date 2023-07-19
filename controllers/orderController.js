@@ -14,11 +14,9 @@ const cart = async (req, res) => {
 // Add an item to the cart
 const addToCart = async (req, res) => {
     try {
-        if (!req.user) {
-            return res.status(401).json({ msg: "Unauthorized" });
-        }
+       
 
-        const cart = await Order.getCart(req.user._id);
+        const cart = await Order.getCart(req.params.user_id);
         await cart.addItemToCart(req.params.id);
         res.status(200).json(cart);
     } catch (e) {
@@ -29,7 +27,7 @@ const addToCart = async (req, res) => {
 // Updates an item's qty in the cart
 const setItemQtyInCart = async (req, res) => {
     try {
-        const cart = await Order.getCart(req.user._id);
+        const cart = await Order.getCart(req.params.user_id);
         await cart.setItemQty(req.body.itemId, req.body.newQty);
         res.status(200).json(cart);
     } catch (e) {
@@ -41,7 +39,7 @@ const setItemQtyInCart = async (req, res) => {
 // Update the cart's isPaid property to true
 const checkout = async (req, res) => {
     try {
-        const cart = await Order.getCart(req.user._id);
+        const cart = await Order.getCart(req.params.user_id);
         cart.isPaid = true;
         await cart.save();
         res.status(200).json(cart);
@@ -54,7 +52,7 @@ const checkout = async (req, res) => {
 const history = async (req, res) => {
     // Sort most recent orders first
     try {
-        const orders = await Order.find({ user: req.user._id, isPaid: true })
+        const orders = await Order.find({ user: req.params.user_id, isPaid: true })
             .sort("-updatedAt")
             .exec();
         res.status(200).json(orders);

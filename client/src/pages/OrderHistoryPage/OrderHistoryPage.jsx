@@ -23,14 +23,14 @@ const OrderHistoryPage = ({ user }) => {
     useEffect(() => {
         // Load previous orders (paid)
         async function fetchOrderHistory() {
-            const orders = await getOrderHistory();
+            const orders = await getOrderHistory(user.id);
             setOrders(orders);
             // If no orders, activeOrder will be set to null below
             setActiveOrder(orders[0])
 
         }
         fetchOrderHistory();
-    }, []);
+    }, [user]);
 
     return user ? (
         <div className="order_history_page_container">

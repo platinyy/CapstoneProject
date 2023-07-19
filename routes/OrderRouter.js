@@ -4,12 +4,12 @@ const orderController = require('../controllers/orderController');
 const middleware = require('../middleware')
 
 
-router.get('/cart', middleware.checkAuth, orderController.cart);
-router.get('/history', middleware.checkAuth, orderController.history);
-router.get('/history/:id', middleware.checkAuth, orderController.historyById);
+router.get('/cart',middleware.stripToken, middleware.verifyToken,  orderController.cart);
+router.get('/history/:user_id',middleware.stripToken, middleware.verifyToken,  orderController.history);
+router.get('/history/orders/:id',  middleware.stripToken,middleware.verifyToken, orderController.historyById);
 
-router.post('/cart/items/:id', middleware.checkAuth, orderController.addToCart);
-router.post('/cart/checkout', middleware.checkAuth, orderController.checkout);
-router.put('/cart/qty', middleware.checkAuth, orderController.setItemQtyInCart);
+router.post('/cart/items/:id/:user_id', middleware.stripToken,middleware.verifyToken,orderController.addToCart);
+router.post('/cart/checkout/:user_id', middleware.stripToken,middleware.verifyToken, orderController.checkout);
+router.put('/cart/qty/:user_id', middleware.stripToken,middleware.verifyToken,  orderController.setItemQtyInCart);
 
 module.exports = router;
